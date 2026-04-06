@@ -1,14 +1,12 @@
 
 using Unity.Collections;
 using UnityEngine;
-using static UnityEngine.InputManagerEntry;
 /// <summary>
 /// Class which represents a score pickup
 /// </summary>
 public class GearPickup : Pickup
 {
     [Header("Gear Pickup Settings")]
-    [Tooltip("The amount of score gained when picked up.")]
     public int gear = 1;
 
     private Objective objective = new Objective();
@@ -42,13 +40,9 @@ public class GearPickup : Pickup
         else
         {
             objective.showObjective = true;
-            objective.hudText = "Find Repair Parts" + GameManager.gearParts + "/5";
+            objective.hudText = "Find Repair Parts " + GameManager.gearParts + "/5";
             objective.objectivePopupText = 5 - GameManager.gearParts + " parts remaining";
         }
-
-        
-
-      
 
         ObjectiveManager.Instance.SetObjective(objective);
     }

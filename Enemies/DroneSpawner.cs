@@ -51,7 +51,7 @@ public class DroneSpawner : MonoBehaviour
 
     public void NotifyDroneDestroyed(GameObject drone)
     {
-        Debug.Log("Notifed");
+
         if (aliveDrones.Contains(drone))
         {
             aliveDrones.Remove(drone);

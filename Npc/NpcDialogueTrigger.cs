@@ -64,7 +64,6 @@ public class NpcDialogueTrigger : MonoBehaviour
                         objective = finalObjective;
 
                     }
-                    Debug.Log("Active:" + objective +  "final: "+  finalObjective);
                 }
                 
                 if(ObjectiveManager.Instance.GetCurrentObjective() == objective.hudText)

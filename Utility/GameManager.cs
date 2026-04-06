@@ -63,7 +63,11 @@ public class GameManager : MonoBehaviour
 
     [SerializeField]
     public static int gearParts = 0;
-  
+
+
+    [SerializeField]
+    public static int coreParts = 0;
+
     // The highest score obtained by this player
     [Tooltip("The highest score acheived on this device")]
     public int highScore = 0;
@@ -315,6 +319,11 @@ public class GameManager : MonoBehaviour
         gearParts = 0;
     }
 
+    public static void ResetCoreParts()
+    {
+        coreParts = 0;
+    }
+
     /// <summary>
     /// Description:
     /// Saves the player's highscore
@@ -356,6 +365,15 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public static void AddCoreParts(int core)
+    {
+        coreParts += core;
+        if (coreParts == 5)
+        {
+            PlayerPrefs.SetInt("Flag_HasAllCoreParts", 1);
+        }
+    }
+
     /// <summary>
     /// Description:
     /// Resets the game player prefs of the lives, health, and score
@@ -381,6 +399,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Flag_ActivateLift1", 0);
         PlayerPrefs.SetInt("Flag_ActivateLift2", 0);
         PlayerPrefs.SetInt("Flag_ShowScientist", 0);
+        PlayerPrefs.SetInt("Flag_HasAllCoreParts", 0);
+        PlayerPrefs.SetInt("Flag_ShowCoreParts", 0);
 
     }
 
@@ -392,6 +412,8 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Flag_ActivateLift1", 0);
         PlayerPrefs.SetInt("Flag_ActivateLift2", 0);
         PlayerPrefs.SetInt("Flag_ShowScientist", 0);
+        PlayerPrefs.SetInt("Flag_HasAllCoreParts", 0);
+        PlayerPrefs.SetInt("Flag_ShowCoreParts", 0);
     }
 
 }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /// <summary>
@@ -16,13 +17,21 @@ public class Checkpoint : MonoBehaviour
     public string animatorActiveParameter = "isActive";
     [Tooltip("The effect to create when activating the checkpoint")]
     public GameObject checkpointActivationEffect;
+
+    [Header("Checkpoint Settings")]
     [Tooltip("Interactive Hint for Player when walking near checkpoint")]
-    public GameObject checkpointHint;
+    public TextMeshPro checkpointHint;
+    [Tooltip("Interactive Hint Color when checkpoint inactive")]
+    public Color inactiveColor = Color.red;
+    [Tooltip("Interactive Hint Color when checkpoint active")]
+    public Color activeColor = Color.green;
+
 
 
     private void Awake()
     {
-        checkpointHint.SetActive(false);
+        checkpointHint.color = inactiveColor;
+        checkpointHint.gameObject.SetActive(false);
     }
 
     /// <summary>
@@ -39,14 +48,25 @@ public class Checkpoint : MonoBehaviour
         if (collision.tag == "Player" && collision.gameObject.GetComponent<Health>() != null)
         {
 
-            checkpointHint.SetActive(true);
+
+            if (CheckpointManager.instance.isCheckpointActivated(this))
+            {
+                checkpointHint.color = activeColor;
+                checkpointHint.text = "Active";
+            }
+
+            checkpointHint.gameObject.SetActive(true);
+
+
+            if (checkpointActivationEffect != null && CheckpointManager.instance.isCheckpointActivated(this) == false)
+            {
+
+                Instantiate(checkpointActivationEffect, transform.position, Quaternion.identity, null);
+            }
 
             CheckpointManager.instance.RegisterCheckpoint(this);
             checkpointAnimator.SetBool(animatorActiveParameter, true);
-            if(checkpointActivationEffect != null)
-            {
-                Instantiate(checkpointActivationEffect, transform.position, Quaternion.identity, null);
-            }
+           
         
         }
     }
@@ -55,7 +75,7 @@ public class Checkpoint : MonoBehaviour
     {
         if(collision.tag == "Player")
         {
-            checkpointHint.SetActive(false);
+            checkpointHint.gameObject.SetActive(false);
         }
     }
 }

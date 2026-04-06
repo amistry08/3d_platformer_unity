@@ -41,5 +41,10 @@ public class CheckpointManager : MonoBehaviour
 
         return closest != null ? closest.respawnLocation : null;
     }
+
+    public bool isCheckpointActivated(Checkpoint checkpoint)
+    {
+        return activatedCheckpoints.Contains(checkpoint);
+    }
 }
 

@@ -37,6 +37,7 @@ public class Health : MonoBehaviour
     public float respawnWaitTime = 3f;
 
     private DroneSpawner spawner;
+    private EnemyZoneSpawner zoneSpawner;
 
     // Start is called before the first frame update
     void Start()
@@ -150,6 +151,10 @@ public class Health : MonoBehaviour
         }
         else
         {
+            if(DamageCrackHUD.Instance != null)
+            {
+                DamageCrackHUD.Instance.ShowDamage();
+            }
             if (hitEffect != null)
             {
                 Instantiate(hitEffect, transform.position, transform.rotation, null);
@@ -277,10 +282,13 @@ public class Health : MonoBehaviour
         else
         {
             GameOver();
-            Debug.Log("Notifed1" + spawner + this.gameObject);
             if (spawner != null)
             {
                 spawner.NotifyDroneDestroyed(this.gameObject);
+            }
+            if (zoneSpawner != null)
+            {
+                zoneSpawner.NotifyEnemyDied(this.gameObject);
             }
             Destroy(this.gameObject);
         }      
@@ -302,8 +310,12 @@ public class Health : MonoBehaviour
 
     private void UpdateRespawnPoint()
     {
+        if(CheckpointManager.instance == null)
+        {
+            return;
+        }
+
         Transform closestRespawnPoint = CheckpointManager.instance.GetClosestActivatedCheckpoint(transform.position);
-        Debug.Log("Checkpoint Respawn position" + closestRespawnPoint + "player:" + transform.position);
         if (closestRespawnPoint != null)
         {
             SetRespawnPoint(closestRespawnPoint.position);
@@ -313,6 +325,11 @@ public class Health : MonoBehaviour
     public void setSpawner(DroneSpawner spawner)
     {
         this.spawner = spawner;
+    }
+
+    public void setZoneSpawner(EnemyZoneSpawner zoneSpawner)
+    {
+        this.zoneSpawner = zoneSpawner;
     }
 
 }

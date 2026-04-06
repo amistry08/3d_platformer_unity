@@ -4,7 +4,7 @@ using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class DroneWaypointPatrol : MonoBehaviour
 {
-    public DronePath patrolPath;
+    public DronePath patrolPath = null;
     
     [SerializeField]
     private float waitTimeAtPoint = 2f;

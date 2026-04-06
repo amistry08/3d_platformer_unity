@@ -16,6 +16,13 @@ public class SpacecraftActivate : MonoBehaviour
     public ParticleSystem explosionEffect;
     public ParticleSystem flashEffect;
 
+    [Header("Audio")]
+    public AudioSource audioSource;
+    public AudioClip explosionClip;
+    public AudioClip launchClip;
+    public AudioClip engineClip;
+
+
     [Header("Movement")]
     public float launchDuration = 4f;
     public float moveUpSpeed = 8f;
@@ -113,16 +120,27 @@ public class SpacecraftActivate : MonoBehaviour
         if (explosionEffect != null) explosionEffect.Play();
         if (flashEffect != null) flashEffect.Play();
 
+        if (audioSource != null && explosionClip != null)
+            audioSource.PlayOneShot(explosionClip);
+
         // Small delay before blastoff
         yield return new WaitForSeconds(2f);
 
         if (smokeEffect != null) smokeEffect.Stop();
         if (fireEffect != null) fireEffect.Play();
 
+        if (audioSource != null && launchClip != null)
+            audioSource.PlayOneShot(launchClip);
+
         // Small delay before blastoff
         yield return new WaitForSeconds(3f);
 
-        
+        if (audioSource != null && explosionClip != null)
+            audioSource.PlayOneShot(explosionClip);
+       
+        if (audioSource != null && launchClip != null)
+            audioSource.PlayOneShot(engineClip);
+
         float timer = 0f;
 
         while (timer < launchDuration)
@@ -140,6 +158,9 @@ public class SpacecraftActivate : MonoBehaviour
 
             yield return null;
         }
+
+       
+
 
         yield return new WaitForSeconds(1f);
 
