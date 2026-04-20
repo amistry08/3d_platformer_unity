@@ -168,7 +168,7 @@ public class SpacecraftActivate : MonoBehaviour
         {
             Destroy(this.gameObject);
             GameManager.instance.LevelCleared();
-
+         
         }
     }
 

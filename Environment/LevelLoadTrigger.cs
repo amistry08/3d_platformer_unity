@@ -24,7 +24,7 @@ public class LevelLoadTrigger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene(nameOfSceneToLoad);
+            GameManager.instance.LevelCleared();
         }
     }
 

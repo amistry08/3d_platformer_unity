@@ -34,7 +34,7 @@ public class CorePickup : Pickup
         else
         {
             objective.showObjective = true;
-            objective.hudText = "Find Repair Parts " + GameManager.coreParts + "/" + requiredCoreParts;
+            objective.hudText = "Find Core Parts " + GameManager.coreParts + "/" + requiredCoreParts;
             objective.objectivePopupText = 5 - GameManager.coreParts + " cores remaining";
         }
 

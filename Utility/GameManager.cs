@@ -223,10 +223,7 @@ public class GameManager : MonoBehaviour
                 {
                     player.GetComponent<ThirdPersonCharacterController>().playerCamera.GetComponent<ThirdPersonCamera>().enabled = false;
                 }
-                //else if (player.GetComponent<ThirdPersonCharacterController>().playerCamera.GetComponent<Cinemachine.CinemachineBrain>())
-                //{
-                //    player.GetComponent<ThirdPersonCharacterController>().playerCamera.GetComponent<Cinemachine.CinemachineBrain>().enabled = false;
-                //}
+             
             }
 
             UIManager.instance.allowPause = false;
@@ -401,7 +398,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Flag_ShowScientist", 0);
         PlayerPrefs.SetInt("Flag_HasAllCoreParts", 0);
         PlayerPrefs.SetInt("Flag_ShowCoreParts", 0);
-
+        PlayerPrefs.SetInt("Flag_ShowGateKeyA", 0);
     }
 
     public static void ResetGameProgressFlags()
@@ -414,6 +411,7 @@ public class GameManager : MonoBehaviour
         PlayerPrefs.SetInt("Flag_ShowScientist", 0);
         PlayerPrefs.SetInt("Flag_HasAllCoreParts", 0);
         PlayerPrefs.SetInt("Flag_ShowCoreParts", 0);
+        PlayerPrefs.SetInt("Flag_ShowGateKeyA", 0);
     }
 
 }

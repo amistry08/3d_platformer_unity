@@ -40,7 +40,6 @@ public class PortalTrigger : MonoBehaviour
 
     public void DeactivatePortal()
     {
-        Debug.Log("DeactivatePortal");
         isActive = false;
         portalSurface.GetComponent<MeshRenderer>().material = inActiveMaterial;
     }
